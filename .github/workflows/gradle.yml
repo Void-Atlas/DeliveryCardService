@@ -23,7 +23,7 @@ jobs:
         # Запускаем SUT в фоне (&)
         # Имя JAR — app-mbank.jar как в примере препода
         # Если у тебя другое — замени (например app-order.jar)
-        run: java -jar ./artifacts/app-order.jar &
+        run: java -jar ./artifacts/app-card-delivery.jar &
 
       - name: Build with Gradle
         # Запуск тестов + headless для Selenium/Selenide в CI

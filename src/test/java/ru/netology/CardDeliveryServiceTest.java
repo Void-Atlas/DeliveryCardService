@@ -20,7 +20,7 @@ class registrationTest{
     public String generateDate(int days, String pattern){
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern(pattern));
     }
-    
+
 
     @Test
     void shouldRegisterByDeliverCard() {
