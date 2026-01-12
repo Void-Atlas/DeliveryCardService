@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
@@ -11,8 +12,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.remote.tracing.EventAttribute.setValue;
 
 public class CardDeliveryServiceTest {
@@ -24,11 +24,16 @@ class registrationTest{
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern(pattern));
     }
 
+    @BeforeEach
+    void setUp() {
+        open("http://localhost:9999");
+    }
+
     @Test
     void shouldRegisterByDeliverCard() {
         String planningDate = generateDate(4, "dd.MM.yyyy");
 
-        Selenide.open("http://localhost:9999");
+        open("http://localhost:9999");
         SelenideElement form = $$("form").find(Condition.visible);
         form.$("[data-test-id='city'] input").setValue("Краснод");
         $$("div.popup__content div").find(Condition.text("Краснодар")).click();
