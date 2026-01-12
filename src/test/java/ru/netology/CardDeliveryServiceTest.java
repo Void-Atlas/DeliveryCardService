@@ -20,17 +20,13 @@ class registrationTest{
     public String generateDate(int days, String pattern){
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern(pattern));
     }
-
-    @BeforeEach
-    void setUp() {
-        Configuration.baseUrl = "http://localhost:9999";
-    }
+    
 
     @Test
     void shouldRegisterByDeliverCard() {
         String planningDate = generateDate(4, "dd.MM.yyyy");
 
-        open("http://localhost:9999");
+        Selenide.open("http://localhost:9999");
         SelenideElement form = $$("form").find(Condition.visible);
         form.$("[data-test-id='city'] input").setValue("Краснод");
         $$("div.popup__content div").find(Condition.text("Краснодар")).click();
