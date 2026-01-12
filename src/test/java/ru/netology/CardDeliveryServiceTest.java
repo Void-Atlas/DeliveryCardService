@@ -1,9 +1,6 @@
 package ru.netology;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selectors;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -26,7 +23,7 @@ class registrationTest{
 
     @BeforeEach
     void setUp() {
-        open("http://localhost:9999");
+        Configuration.baseUrl = "http://localhost:9999";
     }
 
     @Test
@@ -39,7 +36,7 @@ class registrationTest{
         $$("div.popup__content div").find(Condition.text("Краснодар")).click();
         form.$("[data-test-id='date'] input").should(Condition.visible)
                 .press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE)
-                        .setValue(planningDate);
+                .setValue(planningDate);
         form.$("[data-test-id='name'] input").setValue("Дэниел Нит");
         form.$("[data-test-id='phone'] input").setValue("+79999999969");
         form.$("[data-test-id='agreement']").click();
